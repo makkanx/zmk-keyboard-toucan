@@ -103,7 +103,7 @@
   &kp RALT(BSLH)   &kp N1      &kp N2    &kp N3     &kp N4   &kp N5                         &kp N6     &kp N7     &kp N8   &kp N9   &kp N0   &kp LGUI(U)
   &kp RALT(RET)   &kp LGUI(N1)          &kp LGUI(N2)        &kp LGUI(N3)      &kp LGUI(N4)       &kp LGUI(N5)                             &kp LGUI(N6)         &kp LGUI(N7)         &kp LGUI(N8)       &kp LGUI(N9)       &kp LGUI(N0)       &kp RALT
   &kp LS(LGUI(H))   &kp F1   &kp F2   &kp F3   &kp F4     &kp F5                           &kp F6   &kp F7   &kp F8    &kp F9      &kp F10     &kp F11
-                                                               &kp DOWN       &trans       &kp LCTRL(INSERT)       &kp LS(INSERT)   &trans         &kp UP
+                                                               &kp DOWN       &trans       &kp LC(INSERT)       &kp LS(INSERT)   &trans         &kp UP
             >;
         };
 
