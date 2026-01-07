@@ -113,9 +113,9 @@
         layer_Symb {
             display-name = "SYMB";
             bindings = <
-  &kp RA(BSLH)   &kp N1      &kp N2    &kp N3     &kp N4   &kp N5                         &kp N6     &kp N7     &kp N8   &kp N9   &kp N0   &kp LGUI(U)
-  &kp RA(RET)   &kp LGUI(N1)          &kp LGUI(N2)        &kp LGUI(N3)      &kp LGUI(N4)       &kp LGUI(N5)                             &kp LGUI(N6)         &kp LGUI(N7)         &kp LGUI(N8)       &kp LGUI(N9)       &kp LGUI(N0)       &kp RALT
-  &kp LS(LGUI(H))   &kp F1   &kp F2   &kp F3   &kp F4     &kp F5                           &kp F6   &kp F7   &kp F8    &kp F9      &kp F10     &kp F11
+  &kp RA(BSLH)   &kp N1      &kp N2    &kp N3     &kp N4   &kp N5                         &kp N6     &kp N7     &kp N8   &kp N9   &kp N0   &kp LG(U)
+  &kp RA(RET)   &kp LG(N1)          &kp LG(N2)        &kp LG(N3)      &kp LG(N4)       &kp LG(N5)                             &kp LG(N6)         &kp LG(N7)         &kp LG(N8)       &kp LG(N9)       &kp LG(N0)       &kp RALT
+  &kp LS(LG(H))   &kp F1   &kp F2   &kp F3   &kp F4     &kp F5                           &kp F6   &kp F7   &kp F8    &kp F9      &kp F10     &kp F11
                                                                &kp DOWN       &trans       &kp LC(INSERT)       &kp LS(INSERT)   &trans         &kp UP
             >;
         };
@@ -126,7 +126,7 @@
             bindings = <
   &kp HOME   &LS(N1)   &kp LS(N2)  &kp LS(N3)   &kp LS(N4)   &kp LS(N5)             &kp LS(N6)   &kp LS(N7)   &kp LS(N8)   &kp LS(N9)   &kp LS(N0)   &kp RA(RBKT)
   &kp END   &kp INSERT   &kp RA(N2)   &kp RA(N3)   &kp RA(N4)   &kp RA(N5)       &ctrl_a_ctrl_k   &kp RA(N7)   &kp RA(N8)   &kp RA(N9)     &kp RA(N0)   &kp C_PP
-  &kp RA(MINUS)   &kp NUBS    &kp LS(RBKT)       &kp GRAVE    &kp RA(NUBS)   &kp LS(NUBS)            &kp EQUAL   &kp LS(EQUAL)   &kp RBKT   &kp PSCRN  &kp CAPS   &kp LS(LGUI(DEL))
+  &kp RA(MINUS)   &kp NUBS    &kp LS(RBKT)       &kp GRAVE    &kp RA(NUBS)   &kp LS(NUBS)            &kp EQUAL   &kp LS(EQUAL)   &kp RBKT   &kp PSCRN  &kp CAPS   &kp LS(LG(DEL))
                                                  &trans              &mo LAYER_Apps        &trans       &trans   &trans   &trans
             >;
         };
