@@ -3,72 +3,138 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define BASE 0
-#define NAV  1
-#define SYM  2
-#define ADJ  3
+#define LAYER_Base 0
+#define LAYER_Symb 1
+#define LAYER_Subl 2
+#define LAYER_Nav 3
+#define LAYER_Bluetooth 4
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+    behaviors {
+        // Homerow Mod for the left pinky - TailorKey (influenced)
+        hrm_l: hrm_l {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <300>;
+            require-prior-idle-ms = <0>;
         };
+
+        // Homerow Mod for the right pinky - TailorKey (influenced).
+        hrm_r: hrm_r {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <300>;
+            require-prior-idle-ms = <0>;
+        };
+
+        // Homerow Mod for the right pinky - TailorKey (influenced).
+        hrm_w: hrm_w {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <0>;
+            retro-tap;
+        };
+
+        my_mt: my_mt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        my_lt: my_lt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        my_mtw: my_mtw {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
     };
+};
+
+/ {
 
     keymap {
         compatible = "zmk,keymap";
 
-        base {
+        layer_Base {
             display-name = "BASE";
             bindings = <
-                &kp ESC   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp LBKT
-                &kp TAB &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-                &kp MINUS &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp SLASH &kp BSLH
-                                &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp BSPC
+  &kp ESC      &kp Q              &my_lt LAYER_Nav W   &my_lt LAYER_Bluetooth E   &kp R   &kp T                               &kp Y                &kp U        &kp I           &kp O     &kp P               &kp LBKT
+  &kp TAB   &hrm_l LCTRL A     &hrm_l LALT S         &hrm_l LGUI D    &hrm_l LSHFT F          &kp G                                    &kp H                &hrm_r RSHFT J         &hrm_r RGUI K   &hrm_r RALT L                 &hrm_r RCTRL SEMI   &kp SQT
+  &kp MINUS           &kp Z   &kp X     &kp C   &kp V         &kp B                               &kp N       &kp M   &kp COMMA       &kp DOT   &kp SLASH            &kp BSLH
+                                                                                 &kp DEL                  &mo 1   &kp SPACE       &kp RET   &mo 2   &kp BSPC
             >;
         };
 
-        nav {
-            display-name = "NAV";
+        layer_Nav {
+                  display-name = "NAVI";
             bindings = <
-                &kp TAB     &kp N1          &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-                &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-                &kp LSHFT   &studio_unlock  &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                                &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+  &kp LG(LC(LA(LS(TAB))))   &kp LG(LC(LA(LS(N0))))      &kp LG(LC(LA(LS(W))))    &kp LG(LC(LA(LS(D))))   &trans         &kp LG(LC(LA(LS(T))))                         &kp LA(LS(LEFT))   &kp LA(LS(DOWN))   &kp LA(LS(UP))   &kp LA(LS(RIGHT))   &trans                     &trans
+  &trans                    &kp LG(LC(LA(LS(EQUAL))))   &kp LG(LC(LA(LS(N9))))   &kp LG(LBKT)            &kp LG(RBKT)   &kp LG(LC(LA(LS(G))))                         &kp LEFT           &kp DOWN           &kp UP           &kp RIGHT           &kp LG(LC(LA(LS(SEMI))))   &trans
+  &trans                    &trans                      &trans                   &trans                  &trans         &kp LG(LC(LA(LS(B))))                         &trans             &trans             &trans           &trans              &trans                     &trans
+                                                                                                         &trans         &trans                  &trans       &trans   &trans             &trans
             >;
         };
 
-        sym {
-            display-name = "SYM";
+        layer_Symb {
+            display-name = "SYMB";
             bindings = <
-                &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-                &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-                &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                                          &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+  &kp RALT(BSLH)   &kp N1      &kp N2    &kp N3     &kp N4   &kp N5                         &kp N6     &kp N7     &kp N8   &kp N9   &kp N0   &kp LGUI(U)
+  &kp RALT(RET)   &kp LGU(N1)          &kp LGUI(N2)        &kp LGUI(N3)         &kp LGUI(N4)       &kp LGUI(N5)                             &kp LGUI(N6)         &kp LGUI(N7)         &kp LGUI(N8)       &kp LGUI(N9)       &kp LGUI(N0)       &kp RALT
+  &kp LS(LGUI(H))   &kp F1   &kp F2   &kp F3   &kp F4     &kp F5                           &kp F6   &kp F7   &kp F8    &kp F9      &kp F10     &kp F11 
+                                                               &kp DOWN       &trans       &kp LCTRL(INSERT)       &kp LS(INSERT)   &trans         &kp UP
             >;
         };
 
-        adj {
-            display-name = "ADJ";
+
+        layer_Subl {
+            display-name = "SUBL";
             bindings = <
-                &mo TAB   &trans &kp F7 &kp F8 &kp F9 &kp F12   &kp C_VOL_DN &kp C_MUTE  &kp C_VOL_UP &trans &trans &kp BSPC
-                &kp LCTRL &trans &kp F4 &kp F5 &kp F6 &kp F11   &trans       &trans      &trans       &trans &trans &trans
-                &bt LSHFT &trans &kp F1 &kp F2 &kp F3 &kp F10   &trans       &trans      &trans       &trans &trans &trans
-                                   &kp LGUI &mo NAV &kp SPACE   &kp RET &mo 2 &kp RALT
+  &kp HOME   &LS(N1)   &kp LS(N2)  &kp LS(N3)   &kp LS(N4)   &kp LS(N5)             &kp LS(N6)   &kp LS(N7)   &kp LS(N8)   &kp LS(N9)   &kp LS(N0)   &kp RALT(RBKT)
+  &kp END   &kp INSERT   &kp RALT(N2)   &kp RALT(N3)   &kp RALT(N4)   &kp RALT(N5)       &trans   &kp RALT(N7)   &kp RALT(N8)   &kp RALT(N9)     &kp RALT(N0)   &kp C_PP
+  &kp RALT(MINUS)   &kp NUBS    &kp LS(RBKT)       &kp GRAVE    &kp RALT(NUBS)   &kp LS(NUBS)            &kp EQUAL   &kp LS(EQUAL)   &kp RBKT   &kp PSCRN  &kp CAPS   &kp LS(LGUI(DEL))
+                                                 &trans              &mo LAYER_Apps        &trans       &trans   &trans   &trans
             >;
         };
-        extra_1 {
-                status = "reserved";
-        };
 
-        extra_2 {
-                status = "reserved";
-        };
-
-        extra_3 {
-                status = "reserved";
+          layer_Bluetooth {
+            display-name = "BLUE";
+            bindings = <
+//    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+//    │     │     │     │     │     │     │               │        │          │          │          │          │          │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+//    │     │     │     │     │     │     │               │ bt_clr │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+//    │     │     │     │     │     │     │               │        │          │          │          │          │          │
+//    └─────┴─────┴─────┴─────┼─────┼─────┼─────┐   ┌─────┼────────┼──────────┼──────────┴──────────┴──────────┴──────────┘
+//                            │     │     │     │   │     │        │          │
+//                            └─────┴─────┴─────┘   └─────┴────────┴──────────┘
+  &trans   &trans   &trans   &trans   &trans   &trans                         &trans       &trans         &trans         &trans         &trans         &trans
+  &trans   &trans   &trans   &trans   &trans   &trans                         &bt BT_CLR   &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
+  &trans   &trans   &trans   &trans   &trans   &trans                         &trans       &trans         &trans         &trans         &trans         &trans
+                                      &trans   &trans   &trans       &trans   &trans       &trans
+            >;
         };
     };
 };
